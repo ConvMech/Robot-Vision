@@ -60,12 +60,12 @@ class Button(object):
 			self.ih = icon_h
 
 	def within(self,px, py):
-		a = (x2 - x1)*(py - y1) - (y2 - y1)*(px - x1);  
-        b = (x4 - x2)*(py - y2) - (y4 - y2)*(px - x2);  
-        c = (x3 - x4)*(py - y4) - (y3 - y4)*(px - x4);  
-        d = (x1 - x3)*(py - y3) - (y1 - y3)*(px - x3);  
-        if (a > 0 and b > 0 and c > 0 and d > 0) or (a < 0 and b < 0 and c < 0 and d < 0)   
-            return true;   
+		a = (self.x2 - self.x1)*(py - self.y1) - (self.y2 - self.y1)*(px - self.x1)  
+		b = (self.x4 - self.x2)*(py - self.y2) - (self.y4 - self.y2)*(px - self.x2)  
+		c = (self.x3 - self.x4)*(py - self.y4) - (self.y3 - self.y4)*(px - self.x4)  
+		d = (self.x1 - self.x3)*(py - self.y3) - (self.y1 - self.y3)*(px - self.x3)  
+		if (a > 0 and b > 0 and c > 0 and d > 0) or (a < 0 and b < 0 and c < 0 and d < 0):   
+			return True;   
 		#if px - self.x > 0 and px - self.x < self.w and py - self.y > 0 and py - self.y < self.h:
 		#	return True
 		else:
