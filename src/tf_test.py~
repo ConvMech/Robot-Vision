@@ -11,7 +11,8 @@ from image_geometry import PinholeCameraModel
 from gui import *
 import copy
 from cnn import *
-from compute_tf.msg import command
+from std_msgs.msg import String
+#from compute_tf.msg import command
 
 cam_model = PinholeCameraModel()
 intrinsic_mat = np.zeros((3,3))
@@ -29,12 +30,7 @@ axis = []
 hand_pose_flag = 0
 
 def send_command(index = 0,operation = 'hello project fukushima'):
-	#print('get_res')
-	#rospy.init_node('command_talker', anonymous=True)
-	msg = command()
-	msg.button = index
-	msg.operation = operation
-	
+	msg = str(index) + operation
 	pub.publish(msg)	
 	send_success = True
 	
@@ -301,7 +297,7 @@ if __name__ == '__main__':
 	rospy.Subscriber("/camera/rgb/camera_info",CameraInfo,callback)
 	rospy.Subscriber("/object_center", vec, callback2)
 	rospy.Subscriber("/camera/rgb/image_color", Image, img_callback)
-	pub = rospy.Publisher('command', command)
+	pub = rospy.Publisher('command', String)
 	counter = 0
 	while not rospy.is_shutdown():
 		counter += 1
