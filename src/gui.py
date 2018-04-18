@@ -25,12 +25,20 @@ down = False
 record = 0
 
 class Button(object):
-	def __init__(self, category, x, y, w, h):
+	def __init__(self, category, x, y, w, h, x1,y1,x2,y2,x3,y3,x4,y4):
 		self.category = category
 		self.x = x
 		self.y = y
 		self.w = w
 		self.h = h
+		self.x1 = x1
+		self.x2 = x2
+		self.x3 = x3
+		self.x4 = x4
+		self.y1 = y1
+		self.y2 = y2
+		self.y3 = y3
+		self.y4 = y4
 		self.setIcon(category)
 
 	def setIcon(self,category):
@@ -52,8 +60,14 @@ class Button(object):
 			self.ih = icon_h
 
 	def within(self,px, py):
-		if px - self.x > 0 and px - self.x < self.w and py - self.y > 0 and py - self.y < self.h:
-			return True
+		a = (x2 - x1)*(py - y1) - (y2 - y1)*(px - x1);  
+        b = (x4 - x2)*(py - y2) - (y4 - y2)*(px - x2);  
+        c = (x3 - x4)*(py - y4) - (y3 - y4)*(px - x4);  
+        d = (x1 - x3)*(py - y3) - (y1 - y3)*(px - x3);  
+        if (a > 0 and b > 0 and c > 0 and d > 0) or (a < 0 and b < 0 and c < 0 and d < 0)   
+            return true;   
+		#if px - self.x > 0 and px - self.x < self.w and py - self.y > 0 and py - self.y < self.h:
+		#	return True
 		else:
 			return False
 	def chosen(self,bx, by):
@@ -264,7 +278,7 @@ def updateView(arr, rois_info, M, M2,model):
 		#	imagecount += 1
 		'''
 	
-		button = Button(c,x,y,width,high)
+		button = Button(c,x,y,width,high,x1,y1,x2,y2,x3,y3,x4,y4)
 		#x1 = x + width
 		#y1 = y + high
 		#print px, x, width, py, y, high
