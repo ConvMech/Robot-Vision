@@ -71,8 +71,14 @@ class Button(object):
 		else:
 			return False
 	def chosen(self,bx, by):
-		if bx - self.x > 0 and bx - self.x < self.w and by - self.y > 0 and by - self.y < self.h:
-			return True
+		a = (self.x2 - self.x1)*(by - self.y1) - (self.y2 - self.y1)*(bx - self.x1)  
+		b = (self.x4 - self.x2)*(by - self.y2) - (self.y4 - self.y2)*(bx - self.x2)  
+		c = (self.x3 - self.x4)*(by - self.y4) - (self.y3 - self.y4)*(bx - self.x4)  
+		d = (self.x1 - self.x3)*(by - self.y3) - (self.y1 - self.y3)*(bx - self.x3)  
+		if (a > 0 and b > 0 and c > 0 and d > 0) or (a < 0 and b < 0 and c < 0 and d < 0):   
+			return True;   
+		#if px - self.x > 0 and px - self.x < self.w and py - self.y > 0 and py - self.y < self.h:
+		#	return True
 		else:
 			return False
 
