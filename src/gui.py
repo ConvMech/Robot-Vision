@@ -75,6 +75,9 @@ class Button(object):
 		b = (self.x4 - self.x2)*(by - self.y2) - (self.y4 - self.y2)*(bx - self.x2)  
 		c = (self.x3 - self.x4)*(by - self.y4) - (self.y3 - self.y4)*(bx - self.x4)  
 		d = (self.x1 - self.x3)*(by - self.y3) - (self.y1 - self.y3)*(bx - self.x3)  
+		#if self.category == 1:
+		#	if self.y2 >480 or self.y4 > 480:
+		#		return False 
 		if (a > 0 and b > 0 and c > 0 and d > 0) or (a < 0 and b < 0 and c < 0 and d < 0):   
 			return True;   
 		#if px - self.x > 0 and px - self.x < self.w and py - self.y > 0 and py - self.y < self.h:
@@ -343,6 +346,8 @@ def updateView(arr, rois_info, M, M2,model):
 						down = False	
 				cmd = True
 				print b_num, opt
+				lx = -1
+				ly = -1
 				chosen = -1
 					
 	arrx_n, arry, channel = arr.shape
